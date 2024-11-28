@@ -16,10 +16,10 @@ export default async function handler(req, res) {
                 throw new Error(`Ошибка запроса: ${response.statusText}`);
             }
             
-            const data = await response.json(); // Парсинг JSON-ответа
+            // const data = await response.json(); // Парсинг JSON-ответа
 
             // Возврат данных клиенту
-            res.status(200).json({ message: 'Данные получены!', data });
+            res.status(200).text(response);
         } catch (error) {
             // Обработка ошибок
             res.status(500).json({ error: 'Ошибка получения данных', details: error.message });
