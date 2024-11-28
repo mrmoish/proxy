@@ -5,14 +5,26 @@ const ModuleURL = require('url');
 // export async default function handler(req, res) { 
 // не работает без default(без которого не нужно прямо указывать точное имя фунции при работе из другого файла)
 export default async function handler(req, res) {
+    if (req.method === 'GET') {
+        try {
+            // URL внешнего API
+            const apiUrl = 'https://jsonplaceholder.typicode.com/posts/1';
+            
+            // Запрос данных с внешнего сайта
+            const response = await fetch(apiUrl);
+            if (!response.ok) {
+                throw new Error(`Ошибка запроса: ${response.statusText}`);
+            }
+            
+            const data = await response.json(); // Парсинг JSON-ответа
 
-    const response = await fetch('jw.org');
-    if (!response.ok) {
-        // res.status(200).json({ message:  ModuleURL.parse(req.url,true).query.url });
-        res.status(200).json({ message: 'errrrrr'});
-        // throw new Error(`Ошибка: ${response.status}`);
+            // Возврат данных клиенту
+            res.status(200).json({ message: 'Данные получены!', data });
+        } catch (error) {
+            // Обработка ошибок
+            res.status(500).json({ error: 'Ошибка получения данных', details: error.message });
+        }
+    } else {
+        res.status(405).json({ error: 'Метод не поддерживается' });
     }
-    
-    res.status(200).json({ message: 'okkik'});
-      
 }
