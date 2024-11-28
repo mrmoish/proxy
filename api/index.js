@@ -8,7 +8,7 @@ export default async function handler(req, res) {
     if (req.method === 'GET') {
         try {
             // URL внешнего API
-            const apiUrl = 'https://jsonplaceholder.typicode.com/posts/1';
+            const apiUrl = 'https://wol.jw.org';
             
             // Запрос данных с внешнего сайта
             const response = await fetch(apiUrl);
