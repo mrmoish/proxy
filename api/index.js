@@ -19,6 +19,7 @@ export default async function handler(req, res) {
             const html = await response.text(); // Парсинг JSON-ответа
 
             // Возврат данных клиенту
+            res.setHeader('Content-Type', 'text/html');
             res.status(200).send(html);
         } catch (error) {
             // Обработка ошибок
