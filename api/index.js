@@ -2,7 +2,7 @@
 // export -  функцию доступной за пределами файла.
 // export async default function handler(req, res) { 
 // не работает без default(без которого не нужно прямо указывать точное имя фунции при работе из другого файла)
-export default async function handler(req, res) {
+export default function handler(req, res) {
   // const targetUrl = req.query.url;
   try {
     // const response = await fetch(targetUrl);
