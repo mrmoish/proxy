@@ -29,9 +29,9 @@ export default async function handler(req, res) {
   switch (method) {
     case 'GET':
 
-      // ModuleURL.parse(req.url,true).query.url
+         
       // Обработка GET-запроса
-      res.status(200).json({ message:  'ff' });
+      res.status(200).json({ message:  ModuleURL.parse(req.url,true).query.url['url'] });
       break;
     case 'POST':
       // Обработка POST-запроса
